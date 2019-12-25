@@ -1,5 +1,5 @@
 require "digest"
-algorithms = %w{MD5 SHA1}
+algorithms = %w{MD5 SHA1 SHA2}
 
 puts "what do you want to encipher?"
 
@@ -11,10 +11,13 @@ algorithms.each.with_index(1) {|algorithm, index| puts "#{index}. #{algorithm}"}
 
 chosen_algorithm = gets.to_i - 1
 
-if chosen_algorithm == 0
+case chosen_algorithm
+when 0
   puts Digest::MD5.hexdigest text_to_encryption
-elsif chosen_algorithm == 1
+when 1
   puts Digest::SHA1.hexdigest text_to_encryption
+when 2
+  puts Digest::SHA2.hexdigest text_to_encryption
 else
-  puts "Sorry, we don't have such an algorithm"
+  "Sorry, we don't have such an algorithm"
 end
